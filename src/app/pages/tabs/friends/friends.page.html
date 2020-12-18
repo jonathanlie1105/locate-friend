@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>FRIENDS</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-searchbar
+    [(ngModel)]="searchTerm"
+    (ionChange)="setFilteredItems()"
+  ></ion-searchbar>
+
+  <ion-segment value="friends" (ionChange)="segmentChanged($event)">
+    <ion-segment-button value="friends">
+      <ion-label>My Friends</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="users">
+      <ion-label>Find Friends</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  <ion-list *ngIf="!showFriends">
+    <ion-list-header>Find Friends</ion-list-header>
+    <ion-item *ngFor="let user of filteredUsers">
+      <ion-avatar>
+        <ion-img [src]="user.imageUrl"></ion-img>
+      </ion-avatar>
+      <ion-label>{{user.firstName}} {{user.lastName}}</ion-label>
+      <ion-buttons>
+        <ion-button color="primary" (click)="addFriend(user)">
+          <ion-icon name="add-circle-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-item>
+  </ion-list>
+
+  <ion-list *ngIf="showFriends">
+    <ion-list-header>Your Friends</ion-list-header>
+    <ion-item *ngFor="let friend of filteredFriends">
+      <ion-avatar>
+        <ion-img [src]="friend.imageUrl"></ion-img>
+      </ion-avatar>
+      <ion-label>{{friend.firstName}} {{friend.lastName}}</ion-label>
+      <ion-buttons>
+        <ion-button color="danger" (click)="deleteFriend(friend)">
+          <ion-icon name="close-circle-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-item>
+  </ion-list>
+</ion-content>

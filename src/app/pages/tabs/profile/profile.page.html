@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>PROFILE</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-card *ngIf="photo">
+        <ion-card-content>
+          <img class="profile-picture" [src]="photo" />
+        </ion-card-content>
+      </ion-card>
+    </ion-row>
+    <ion-row>
+      <ion-col text-center>
+        <ion-text>{{firstName}} {{lastName}}</ion-text><br/>
+        <ion-text>Kesan Pesan: Ga seru karena online</ion-text>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+<ion-footer (click)="logout()">
+  <ion-toolbar color="secondary">
+    <ion-title>Log Out</ion-title>
+  </ion-toolbar>
+</ion-footer>
